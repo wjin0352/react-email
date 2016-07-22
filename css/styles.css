@@ -1,0 +1,17 @@
+
+.side-bar {
+  width: 50%;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.inbox, .spam {
+  font-size: 2em;
+  display: inline-block;
+  list-style-type: none;
+  width: 140px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: orange;
+  border: 0.01em solid grey;
+}

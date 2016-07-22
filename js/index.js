@@ -62,9 +62,50 @@ class SideBar extends React.Component {
   render() {
     return (
       <div className="side-bar">
-      <div className="inbox">inbox</div>
-      <div className="spam">spam</div>
-    </div>
+        <Link to={'/inbox'}>
+          <div className="inbox">
+            <li>inbox</li>
+          </div>
+        </Link>
+        <Link to={'/spam'}>
+          <div className="spam">
+            <li>spam</li>
+          </div>
+        </Link>
+      </div>
+    )
+  }
+}
+
+class Inbox extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+
+    )
+  }
+}
+
+class Spam extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+
+    )
+  }
+}
+
+class Email extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+
     )
   }
 }
@@ -76,7 +117,7 @@ class EmailContainer extends React.Component {
   render() {
     return (
       <div className="email-container">
-        email container here! doesn't have a route! its an index route
+        <li>Your email:</li>
         <SideBar />
       </div>
     )
@@ -99,6 +140,8 @@ class List extends React.Component {
 var routes = (
   <Router history={hashHistory}>
     <Route path="/" component={App}>
+      <Route path="/inbox" component={Inbox} />
+      <Route path="/spam" component={Spam} />
       <Route path="/list" component={List} />
       <Route path="/sidebar" component={SideBar} />
       <IndexRoute component={EmailContainer} />

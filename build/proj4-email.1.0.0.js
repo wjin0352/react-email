@@ -155,12 +155,20 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'inbox' },
-	          'inbox'
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'inbox'
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'spam' },
-	          'spam'
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'spam'
+	          )
 	        )
 	      );
 	    }
@@ -184,7 +192,11 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'email-container' },
-	        'email container here! doesn\'t have a route! its an index route',
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'Your email:'
+	        ),
 	        _react2.default.createElement(SideBar, null)
 	      );
 	    }
