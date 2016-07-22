@@ -39,41 +39,61 @@ spam: {
   }
 };
 
-var App = function(props) {
-  return (
-    <div className="main-app">
-      <h1>Email</h1>
-      <div>
-        {props.children}
-      </div>
-    </div>
-  )
+class App extends React.Component {
+  constructor(props) {
+    super(props);
   }
+  render() {
+    return (
+      <div className="main-app">
+        <h1>Email</h1>
+        <div>
+          {this.props.children}
+        </div>
+      </div>
+    )
+  }
+}
 
-var SideBar = function() {
-  return (
-    <div className="side-bar">
+class SideBar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="side-bar">
       <div className="inbox">inbox</div>
       <div className="spam">spam</div>
     </div>
-  )
+    )
+  }
 }
 
-var EmailContainer = function() {
-  return (
-    <div className="email-container">
-      email container here! doesn't have a route! its an index route
-      <SideBar />
-    </div>
-  )
+class EmailContainer extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div className="email-container">
+        email container here! doesn't have a route! its an index route
+        <SideBar />
+      </div>
+    )
+  }
 }
 
-var List = function() {
-  return (
-    <div>
-      List area
-    </div>
-  )
+class List extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return(
+      <div>
+        List area
+      </div>
+    )
+  }
 }
 
 var routes = (

@@ -46,6 +46,8 @@
 
 	'use strict';
 	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
@@ -59,6 +61,12 @@
 	var _reactRouter2 = _interopRequireDefault(_reactRouter);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	// Create a simple mockup of an email reader which uses React Router to handle routing. The app should have a sidebar which allows you to navigate between the inbox and the spam folder. Clicking on these should take you to a /inbox or /spam route. Each of the /inbox and /spam routes should display a list of emails. Clicking on an email should take you to a /email/:emailId route, which displays the email contents.
 	
@@ -97,56 +105,116 @@
 	  }
 	};
 	
-	var App = function App(props) {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'main-app' },
-	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Email'
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      null,
-	      props.children
-	    )
-	  );
-	};
+	var App = function (_React$Component) {
+	  _inherits(App, _React$Component);
 	
-	var SideBar = function SideBar() {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'side-bar' },
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'inbox' },
-	      'inbox'
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'spam' },
-	      'spam'
-	    )
-	  );
-	};
+	  function App(props) {
+	    _classCallCheck(this, App);
 	
-	var EmailContainer = function EmailContainer() {
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'email-container' },
-	    'email container here! doesn\'t have a route! its an index route',
-	    _react2.default.createElement(SideBar, null)
-	  );
-	};
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).call(this, props));
+	  }
 	
-	var List = function List() {
-	  return _react2.default.createElement(
-	    'div',
-	    null,
-	    'List area'
-	  );
-	};
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'main-app' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Email'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          this.props.children
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return App;
+	}(_react2.default.Component);
+	
+	var SideBar = function (_React$Component2) {
+	  _inherits(SideBar, _React$Component2);
+	
+	  function SideBar(props) {
+	    _classCallCheck(this, SideBar);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SideBar).call(this, props));
+	  }
+	
+	  _createClass(SideBar, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'side-bar' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'inbox' },
+	          'inbox'
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'spam' },
+	          'spam'
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return SideBar;
+	}(_react2.default.Component);
+	
+	var EmailContainer = function (_React$Component3) {
+	  _inherits(EmailContainer, _React$Component3);
+	
+	  function EmailContainer(props) {
+	    _classCallCheck(this, EmailContainer);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(EmailContainer).call(this, props));
+	  }
+	
+	  _createClass(EmailContainer, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'email-container' },
+	        'email container here! doesn\'t have a route! its an index route',
+	        _react2.default.createElement(SideBar, null)
+	      );
+	    }
+	  }]);
+	
+	  return EmailContainer;
+	}(_react2.default.Component);
+	
+	var List = function (_React$Component4) {
+	  _inherits(List, _React$Component4);
+	
+	  function List(props) {
+	    _classCallCheck(this, List);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props));
+	  }
+	
+	  _createClass(List, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        'List area'
+	      );
+	    }
+	  }]);
+	
+	  return List;
+	}(_react2.default.Component);
 	
 	var routes = _react2.default.createElement(
 	  _reactRouter.Router,
