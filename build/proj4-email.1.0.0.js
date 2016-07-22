@@ -46,14 +46,19 @@
 
 	'use strict';
 	
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(33);
-	var router = __webpack_require__(172);
-	var Router = router.Router;
-	var Route = router.Route;
-	var hashHistory = router.hashHistory;
-	var IndexRoute = router.IndexRoute;
-	var Link = router.Link;
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(33);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _reactRouter = __webpack_require__(172);
+	
+	var _reactRouter2 = _interopRequireDefault(_reactRouter);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	// Create a simple mockup of an email reader which uses React Router to handle routing. The app should have a sidebar which allows you to navigate between the inbox and the spam folder. Clicking on these should take you to a /inbox or /spam route. Each of the /inbox and /spam routes should display a list of emails. Clicking on an email should take you to a /email/:emailId route, which displays the email contents.
 	
@@ -92,8 +97,71 @@
 	  }
 	};
 	
+	var App = function App(props) {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'main-app' },
+	    _react2.default.createElement(
+	      'h1',
+	      null,
+	      'Email'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      props.children
+	    )
+	  );
+	};
+	
+	var SideBar = function SideBar() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'side-bar' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'inbox' },
+	      'inbox'
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'spam' },
+	      'spam'
+	    )
+	  );
+	};
+	
+	var EmailContainer = function EmailContainer() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'email-container' },
+	    'email container here! doesn\'t have a route! its an index route',
+	    _react2.default.createElement(SideBar, null)
+	  );
+	};
+	
+	var List = function List() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    'List area'
+	  );
+	};
+	
+	var routes = _react2.default.createElement(
+	  _reactRouter.Router,
+	  { history: _reactRouter.hashHistory },
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/', component: App },
+	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: List }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/sidebar', component: SideBar }),
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: EmailContainer })
+	  )
+	);
+	
 	document.addEventListener('DOMContentLoaded', function () {
-	  ReactDOM.render(routes, document.getElementById('app'));
+	  _reactDom2.default.render(routes, document.getElementById('app'));
 	});
 
 /***/ },
