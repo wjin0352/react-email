@@ -1,17 +1,42 @@
+body {
+  box-sizing: border-box;
+}
 
 .side-bar {
-  width: 50%;
+  width: 100%;
   align-items: center;
   margin: 0 auto;
+  background-color: orange;
 }
 
 .inbox, .spam {
-  font-size: 2em;
+  font-size: 1.2em;
   display: inline-block;
   list-style-type: none;
-  width: 140px;
+  width: 48%;
   margin: 0 auto;
   text-align: center;
-  background-color: orange;
-  border: 0.01em solid grey;
+  /*border: 0.01em solid grey;*/
+}
+
+.inbox {
+  border-right: .01px solid grey;
+  border-top: .01px solid grey;
+}
+
+.spam {
+  border-left: .01px solid grey;
+  border-top: .01px solid grey;
+}
+
+.email-container {
+  border: .01em solid black;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.email-container li {
+  /*border: .01em dotted grey;*/
+  list-style-type: none;
+  margin: .8em;
 }

@@ -123,7 +123,7 @@
 	        _react2.default.createElement(
 	          'h1',
 	          null,
-	          'Email'
+	          'Email Service'
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -152,18 +152,64 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'side-bar' },
+	        _react2.default.createElement(Inbox, null),
+	        _react2.default.createElement(Spam, null)
+	      );
+	    }
+	  }]);
+	
+	  return SideBar;
+	}(_react2.default.Component);
+	
+	var Inbox = function (_React$Component3) {
+	  _inherits(Inbox, _React$Component3);
+	
+	  function Inbox(props) {
+	    _classCallCheck(this, Inbox);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Inbox).call(this, props));
+	  }
+	
+	  _createClass(Inbox, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'inbox' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'inbox' },
+	          _reactRouter.Link,
+	          { to: '/inbox' },
 	          _react2.default.createElement(
 	            'li',
 	            null,
 	            'inbox'
 	          )
-	        ),
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Inbox;
+	}(_react2.default.Component);
+	
+	var Spam = function (_React$Component4) {
+	  _inherits(Spam, _React$Component4);
+	
+	  function Spam(props) {
+	    _classCallCheck(this, Spam);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Spam).call(this, props));
+	  }
+	
+	  _createClass(Spam, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'spam' },
 	        _react2.default.createElement(
-	          'div',
-	          { className: 'spam' },
+	          _reactRouter.Link,
+	          { to: '/spam' },
 	          _react2.default.createElement(
 	            'li',
 	            null,
@@ -174,11 +220,11 @@
 	    }
 	  }]);
 	
-	  return SideBar;
+	  return Spam;
 	}(_react2.default.Component);
 	
-	var EmailContainer = function (_React$Component3) {
-	  _inherits(EmailContainer, _React$Component3);
+	var EmailContainer = function (_React$Component5) {
+	  _inherits(EmailContainer, _React$Component5);
 	
 	  function EmailContainer(props) {
 	    _classCallCheck(this, EmailContainer);
@@ -195,7 +241,7 @@
 	        _react2.default.createElement(
 	          'li',
 	          null,
-	          'Your email:'
+	          'welcome user:'
 	        ),
 	        _react2.default.createElement(SideBar, null)
 	      );
@@ -205,8 +251,8 @@
 	  return EmailContainer;
 	}(_react2.default.Component);
 	
-	var List = function (_React$Component4) {
-	  _inherits(List, _React$Component4);
+	var List = function (_React$Component6) {
+	  _inherits(List, _React$Component6);
 	
 	  function List(props) {
 	    _classCallCheck(this, List);
@@ -234,6 +280,8 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: App },
+	    _react2.default.createElement(_reactRouter.Route, { path: '/inbox', component: Inbox }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/spam', component: Spam }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: List }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/sidebar', component: SideBar }),
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: EmailContainer })

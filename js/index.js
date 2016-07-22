@@ -46,7 +46,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="main-app">
-        <h1>Email</h1>
+        <h1>Email Service</h1>
         <div>
           {this.props.children}
         </div>
@@ -62,16 +62,8 @@ class SideBar extends React.Component {
   render() {
     return (
       <div className="side-bar">
-        <Link to={'/inbox'}>
-          <div className="inbox">
-            <li>inbox</li>
-          </div>
-        </Link>
-        <Link to={'/spam'}>
-          <div className="spam">
-            <li>spam</li>
-          </div>
-        </Link>
+        <Inbox />
+        <Spam />
       </div>
     )
   }
@@ -83,7 +75,9 @@ class Inbox extends React.Component {
   }
   render() {
     return(
-
+      <div className="inbox">
+        <Link to={'/inbox'}><li>inbox</li></Link>
+      </div>
     )
   }
 }
@@ -94,18 +88,9 @@ class Spam extends React.Component {
   }
   render() {
     return (
-
-    )
-  }
-}
-
-class Email extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-
+      <div className="spam">
+        <Link to={'/spam'}><li>spam</li></Link>
+      </div>
     )
   }
 }
@@ -117,7 +102,7 @@ class EmailContainer extends React.Component {
   render() {
     return (
       <div className="email-container">
-        <li>Your email:</li>
+        <li>welcome user:</li>
         <SideBar />
       </div>
     )
