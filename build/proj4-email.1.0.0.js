@@ -201,8 +201,8 @@
 	  }
 	
 	  _createClass(Inbox, [{
-	    key: 'processEmail',
-	    value: function processEmail() {
+	    key: 'render',
+	    value: function render() {
 	      var inbox = this.state.inbox;
 	      var id, title, to, content, from;
 	
@@ -213,53 +213,54 @@
 	        title = obj.title;
 	        to = obj.to;
 	        from = obj.from;
-	      });
 	
-	      return results;
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      this.processEmail();
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'inbox', key: item.id },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'To: ',
+	            to
+	          ),
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'From: ',
+	            from
+	          ),
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Title: ',
+	            title
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Content: ',
+	            content
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'user-id' },
+	            'user id: ',
+	            id
+	          ),
+	          _react2.default.createElement('hr', null),
+	          _react2.default.createElement('br', null)
+	        );
+	      });
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'inbox' },
+	        { className: 'inbox-results' },
 	        _react2.default.createElement(
 	          'h3',
 	          null,
 	          'Inbox'
 	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'To: ',
-	          to
-	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'From: ',
-	          from
-	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Title: ',
-	          title
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'Content: ',
-	          content
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          { className: 'user-id' },
-	          'user id: ',
-	          id
-	        )
+	        results
 	      );
 	    }
 	  }]);
@@ -288,53 +289,61 @@
 	      var spam = this.state.spam;
 	      var id, title, to, content, from;
 	
-	      Object.keys(spam).map(function (item) {
+	      var results = Object.keys(spam).map(function (item) {
 	        var obj = spam[item];
 	        content = obj.content;
 	        id = obj.id;
 	        title = obj.title;
 	        to = obj.to;
 	        from = obj.from;
+	
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'spam' },
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'To: ',
+	            to
+	          ),
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'From: ',
+	            from
+	          ),
+	          _react2.default.createElement(
+	            'h4',
+	            null,
+	            'Title: ',
+	            title
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Content: ',
+	            content
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            { className: 'user-id' },
+	            'user id: ',
+	            id
+	          ),
+	          _react2.default.createElement('hr', null),
+	          _react2.default.createElement('br', null)
+	        );
 	      });
 	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'spam' },
+	        { className: 'spam-results' },
 	        _react2.default.createElement(
 	          'h3',
 	          null,
 	          'Spam'
 	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'To: ',
-	          to
-	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'From: ',
-	          from
-	        ),
-	        _react2.default.createElement(
-	          'h4',
-	          null,
-	          'Title: ',
-	          title
-	        ),
-	        _react2.default.createElement(
-	          'p',
-	          null,
-	          'Content: ',
-	          content
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          { className: 'user-id' },
-	          'user id: ',
-	          id
-	        )
+	        results
 	      );
 	    }
 	  }]);

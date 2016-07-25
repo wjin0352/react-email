@@ -83,8 +83,7 @@ class Inbox extends React.Component {
     super(props);
     this.state = { inbox: EMAILS.inbox };
   }
-
-  processEmail() {
+  render() {
     var inbox = this.state.inbox;
     var id, title, to, content, from;
 
@@ -95,23 +94,22 @@ class Inbox extends React.Component {
       title = obj.title;
       to = obj.to;
       from = obj.from;
-    });
 
-    return results;
-  }
+      return(
+        <div className="inbox" key={item.id}>
+          <h4>To: {to}</h4>
+          <h4>From: {from}</h4>
+          <h4>Title: {title}</h4>
+          <p>Content: {content}</p>
+          <li className="user-id">user id: {id}</li>
+          <hr></hr>
+          <br/>
+        </div>
+      )
+    })
 
-  render() {
-    this.processEmail();
-
-    return(
-      <div className="inbox">
-        <h3>Inbox</h3>
-        <h4>To: {to}</h4>
-        <h4>From: {from}</h4>
-        <h4>Title: {title}</h4>
-        <p>Content: {content}</p>
-        <li className="user-id">user id: {id}</li>
-      </div>
+    return (
+      <div className="inbox-results"><h3>Inbox</h3>{results}</div>
     )
   }
 }
@@ -126,25 +124,30 @@ class Spam extends React.Component {
     var spam = this.state.spam;
     var id, title, to, content, from;
 
-    Object.keys(spam).map(function(item) {
+    var results = Object.keys(spam).map(function(item) {
       var obj = spam[item];
       content = obj.content;
       id = obj.id;
       title = obj.title;
       to = obj.to;
       from = obj.from;
-    });
 
-    return (
+      return (
         <div className="spam" >
-          <h3>Spam</h3>
           <h4>To: {to}</h4>
           <h4>From: {from}</h4>
           <h4>Title: {title}</h4>
           <p>Content: {content}</p>
           <li className="user-id">user id: {id}</li>
+          <hr></hr>
+          <br/>
         </div>
-    )
+      )
+    });
+
+  return (
+    <div className="spam-results"><h3>Spam</h3>{results}</div>
+  )
   }
 }
 
