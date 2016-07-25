@@ -62,35 +62,88 @@ class SideBar extends React.Component {
   render() {
     return (
       <div className="side-bar">
-        <Inbox />
-        <Spam />
+        <Link to={'/inbox'}>
+          <div className="sidebar-inbox">
+            <li>inbox</li>
+          </div>
+        </Link>
+        <Link to={'/spam'}>
+          <div className="sidebar-spam" >
+            <li>spam</li>
+          </div>
+        </Link>
       </div>
     )
   }
 }
 
+// INBOX
 class Inbox extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { inbox: EMAILS.inbox };
   }
+
+  processEmail() {
+    var inbox = this.state.inbox;
+    var id, title, to, content, from;
+
+    var results = Object.keys(inbox).map(function(item) {
+      var obj = inbox[item];
+      content = obj.content;
+      id = obj.id;
+      title = obj.title;
+      to = obj.to;
+      from = obj.from;
+    });
+
+    return results;
+  }
+
   render() {
+    this.processEmail();
+
     return(
       <div className="inbox">
-        <Link to={'/inbox'}><li>inbox</li></Link>
+        <h3>Inbox</h3>
+        <h4>To: {to}</h4>
+        <h4>From: {from}</h4>
+        <h4>Title: {title}</h4>
+        <p>Content: {content}</p>
+        <li className="user-id">user id: {id}</li>
       </div>
     )
   }
 }
 
+// SPAM
 class Spam extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { spam: EMAILS.spam }
   }
   render() {
+    var spam = this.state.spam;
+    var id, title, to, content, from;
+
+    Object.keys(spam).map(function(item) {
+      var obj = spam[item];
+      content = obj.content;
+      id = obj.id;
+      title = obj.title;
+      to = obj.to;
+      from = obj.from;
+    });
+
     return (
-      <div className="spam">
-        <Link to={'/spam'}><li>spam</li></Link>
-      </div>
+        <div className="spam" >
+          <h3>Spam</h3>
+          <h4>To: {to}</h4>
+          <h4>From: {from}</h4>
+          <h4>Title: {title}</h4>
+          <p>Content: {content}</p>
+          <li className="user-id">user id: {id}</li>
+        </div>
     )
   }
 }
@@ -112,11 +165,24 @@ class EmailContainer extends React.Component {
 class List extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {emails: EMAILS};
+    // var listEmail = Object.keys(emails).map(function(id, index) {
+    //   var email = emails[id];
+    //   return (
+    //     <div key={index}>
+    //       <li>{email}</li>
+    //     </div>
+    //   )
+    // })
   }
   render() {
     return(
       <div>
-        List area
+      {console.log(this.state.emails)}
+        <li>{ this.state.emails.inbox[0].from }</li>
+      }
+      }
+      }
       </div>
     )
   }

@@ -152,8 +152,32 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'side-bar' },
-	        _react2.default.createElement(Inbox, null),
-	        _react2.default.createElement(Spam, null)
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/inbox' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'sidebar-inbox' },
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'inbox'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          _reactRouter.Link,
+	          { to: '/spam' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'sidebar-spam' },
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              'spam'
+	            )
+	          )
+	        )
 	      );
 	    }
 	  }]);
@@ -161,29 +185,80 @@
 	  return SideBar;
 	}(_react2.default.Component);
 	
+	// INBOX
+	
+	
 	var Inbox = function (_React$Component3) {
 	  _inherits(Inbox, _React$Component3);
 	
 	  function Inbox(props) {
 	    _classCallCheck(this, Inbox);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Inbox).call(this, props));
+	    var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Inbox).call(this, props));
+	
+	    _this3.state = { inbox: EMAILS.inbox };
+	    return _this3;
 	  }
 	
 	  _createClass(Inbox, [{
+	    key: 'processEmail',
+	    value: function processEmail() {
+	      var inbox = this.state.inbox;
+	      var id, title, to, content, from;
+	
+	      var results = Object.keys(inbox).map(function (item) {
+	        var obj = inbox[item];
+	        content = obj.content;
+	        id = obj.id;
+	        title = obj.title;
+	        to = obj.to;
+	        from = obj.from;
+	      });
+	
+	      return results;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      this.processEmail();
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'inbox' },
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/inbox' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'inbox'
-	          )
+	          'h3',
+	          null,
+	          'Inbox'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'To: ',
+	          to
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'From: ',
+	          from
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Title: ',
+	          title
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Content: ',
+	          content
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          { className: 'user-id' },
+	          'user id: ',
+	          id
 	        )
 	      );
 	    }
@@ -192,29 +267,73 @@
 	  return Inbox;
 	}(_react2.default.Component);
 	
+	// SPAM
+	
+	
 	var Spam = function (_React$Component4) {
 	  _inherits(Spam, _React$Component4);
 	
 	  function Spam(props) {
 	    _classCallCheck(this, Spam);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Spam).call(this, props));
+	    var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Spam).call(this, props));
+	
+	    _this4.state = { spam: EMAILS.spam };
+	    return _this4;
 	  }
 	
 	  _createClass(Spam, [{
 	    key: 'render',
 	    value: function render() {
+	      var spam = this.state.spam;
+	      var id, title, to, content, from;
+	
+	      Object.keys(spam).map(function (item) {
+	        var obj = spam[item];
+	        content = obj.content;
+	        id = obj.id;
+	        title = obj.title;
+	        to = obj.to;
+	        from = obj.from;
+	      });
+	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'spam' },
 	        _react2.default.createElement(
-	          _reactRouter.Link,
-	          { to: '/spam' },
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'spam'
-	          )
+	          'h3',
+	          null,
+	          'Spam'
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'To: ',
+	          to
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'From: ',
+	          from
+	        ),
+	        _react2.default.createElement(
+	          'h4',
+	          null,
+	          'Title: ',
+	          title
+	        ),
+	        _react2.default.createElement(
+	          'p',
+	          null,
+	          'Content: ',
+	          content
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          { className: 'user-id' },
+	          'user id: ',
+	          id
 	        )
 	      );
 	    }
@@ -257,7 +376,18 @@
 	  function List(props) {
 	    _classCallCheck(this, List);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props));
+	    var _this6 = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props));
+	
+	    _this6.state = { emails: EMAILS };
+	    // var listEmail = Object.keys(emails).map(function(id, index) {
+	    //   var email = emails[id];
+	    //   return (
+	    //     <div key={index}>
+	    //       <li>{email}</li>
+	    //     </div>
+	    //   )
+	    // })
+	    return _this6;
 	  }
 	
 	  _createClass(List, [{
@@ -266,7 +396,13 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'List area'
+	        console.log(this.state.emails),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          this.state.emails.inbox[0].from
+	        ),
+	        '} } }'
 	      );
 	    }
 	  }]);

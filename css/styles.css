@@ -7,31 +7,29 @@ body {
   align-items: center;
   margin: 0 auto;
   background-color: orange;
+  border: .01em solid grey;
 }
 
-.inbox, .spam {
+.sidebar-inbox, .sidebar-spam {
   font-size: 1.2em;
   display: inline-block;
   list-style-type: none;
   width: 48%;
   margin: 0 auto;
   text-align: center;
-  /*border: 0.01em solid grey;*/
 }
 
-.inbox {
+.sidebar-inbox {
   border-right: .01px solid grey;
-  border-top: .01px solid grey;
 }
 
-.spam {
+.sidebar-spam {
   border-left: .01px solid grey;
-  border-top: .01px solid grey;
 }
 
 .email-container {
   border: .01em solid black;
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -39,4 +37,8 @@ body {
   /*border: .01em dotted grey;*/
   list-style-type: none;
   margin: .8em;
+}
+
+.user-id {
+  list-style-type: none;
 }
