@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import router, { Router, Route, hashHistory, IndexRoute, Link } from 'react-router';
+import router, { Router, Route, browserHistory, IndexRoute, Link } from 'react-router';
 
 // Create a simple mockup of an email reader which uses React Router to handle routing. The app should have a sidebar which allows you to navigate between the inbox and the spam folder. Clicking on these should take you to a /inbox or /spam route. Each of the /inbox and /spam routes should display a list of emails. Clicking on an email should take you to a /email/:emailId route, which displays the email contents.
 
@@ -97,16 +97,15 @@ class Inbox extends React.Component {
 
       return(
         <div className="inbox" key={item.id}>
-          <h4>To: {to}</h4>
           <h4>From: {from}</h4>
-          <h4>Title: {title}</h4>
-          <p>Content: {content}</p>
-          <li className="user-id">user id: {id}</li>
+          <Link to={'/inbox/:id'}>
+            <h4>Title: {title}</h4>
+          </Link>
           <hr></hr>
           <br/>
         </div>
       )
-    })
+    });
 
     return (
       <div className="inbox-results"><h3>Inbox</h3>{results}</div>
@@ -119,6 +118,7 @@ class Spam extends React.Component {
   constructor(props) {
     super(props);
     this.state = { spam: EMAILS.spam }
+
   }
   render() {
     var spam = this.state.spam;
@@ -132,19 +132,18 @@ class Spam extends React.Component {
       to = obj.to;
       from = obj.from;
 
+      console.log(id);
       return (
-        <div className="spam" >
-          <h4>To: {to}</h4>
+        <div className="spam" key={id}>
           <h4>From: {from}</h4>
-          <h4>Title: {title}</h4>
-          <p>Content: {content}</p>
-          <li className="user-id">user id: {id}</li>
+          <Link to={"/spam/:" + {id}} onEnter={obj}>
+            <h4>Title: {title}</h4>
+          </Link>
           <hr></hr>
           <br/>
         </div>
       )
     });
-
   return (
     <div className="spam-results"><h3>Spam</h3>{results}</div>
   )
@@ -165,39 +164,84 @@ class EmailContainer extends React.Component {
   }
 }
 
-class List extends React.Component {
+class EmailInbox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {emails: EMAILS};
-    // var listEmail = Object.keys(emails).map(function(id, index) {
-    //   var email = emails[id];
-    //   return (
-    //     <div key={index}>
-    //       <li>{email}</li>
-    //     </div>
-    //   )
-    // })
+    this.state = { inbox: EMAILS.spam }
   }
   render() {
-    return(
-      <div>
-      {console.log(this.state.emails)}
-        <li>{ this.state.emails.inbox[0].from }</li>
-      }
-      }
-      }
-      </div>
+    var inbox = this.state.inbox;
+    var id, title, to, content, from;
+    // var email = spam[email_id];
+
+    // console.log(email_id);
+    // var results = Object.keys(spam).map(function(item) {
+    //   var obj = spam[item];
+    //   content = obj.content;
+    //   id = obj.id;
+    //   title = obj.title;
+    //   to = obj.to;
+    //   from = obj.from;
+
+    return (
+      <div className="inbox" >
+          <li className="user-id">user id: {id}</li>
+          <hr></hr>
+          <br/>
+        </div>
+      )
+  }
+}
+
+class EmailSpam extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { spam: EMAILS.spam }
+
+  }
+  render(props) {
+  //   var spam = this.state.spam;
+  //   var id, title, to, content, from;
+  //   // var email = spam[this.state.link_id];
+  //   console.log(this.props.email_id);
+
+  //   var results = Object.keys(spam).map(function(item) {
+  //     var obj = spam[item];
+  //     content = obj.content;
+  //     id = obj.id;
+  //     title = obj.title;
+  //     to = obj.to;
+  //     from = obj.from;
+
+
+  //     return (
+  //       <div className="spam" >
+  //         <li className="user-id">user id: {id}</li>
+  //         <h4>To: {to}</h4>
+  //         <h4>From: {from}</h4>
+  //         <h4>Title: {title}</h4>
+  //         <p>Content: {content}</p>
+  //         <li className="user-id">user id: {id}</li>
+  //         <hr></hr>
+  //         <br/>
+  //       </div>
+  //     )
+  //   })
+    console.log(this.props.obj)
+    return (
+      <div>{this.props.obj}</div>
     )
   }
 }
 
 var routes = (
-  <Router history={hashHistory}>
+  <Router history={browserHistory}>
     <Route path="/" component={App}>
       <Route path="/inbox" component={Inbox} />
       <Route path="/spam" component={Spam} />
-      <Route path="/list" component={List} />
       <Route path="/sidebar" component={SideBar} />
+      <Route path="/inbox/:id" component={EmailInbox} />
+      <Route path="/spam/:id" component={EmailSpam} />
       <IndexRoute component={EmailContainer} />
     </Route>
   </Router>

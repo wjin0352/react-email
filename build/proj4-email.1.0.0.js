@@ -220,32 +220,18 @@
 	          _react2.default.createElement(
 	            'h4',
 	            null,
-	            'To: ',
-	            to
-	          ),
-	          _react2.default.createElement(
-	            'h4',
-	            null,
 	            'From: ',
 	            from
 	          ),
 	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            'Title: ',
-	            title
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Content: ',
-	            content
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            { className: 'user-id' },
-	            'user id: ',
-	            id
+	            _reactRouter.Link,
+	            { to: '/inbox/:id' },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Title: ',
+	              title
+	            )
 	          ),
 	          _react2.default.createElement('hr', null),
 	          _react2.default.createElement('br', null)
@@ -280,6 +266,7 @@
 	    var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Spam).call(this, props));
 	
 	    _this4.state = { spam: EMAILS.spam };
+	
 	    return _this4;
 	  }
 	
@@ -297,15 +284,10 @@
 	        to = obj.to;
 	        from = obj.from;
 	
+	        console.log(id);
 	        return _react2.default.createElement(
 	          'div',
-	          { className: 'spam' },
-	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            'To: ',
-	            to
-	          ),
+	          { className: 'spam', key: id },
 	          _react2.default.createElement(
 	            'h4',
 	            null,
@@ -313,28 +295,19 @@
 	            from
 	          ),
 	          _react2.default.createElement(
-	            'h4',
-	            null,
-	            'Title: ',
-	            title
-	          ),
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            'Content: ',
-	            content
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            { className: 'user-id' },
-	            'user id: ',
-	            id
+	            _reactRouter.Link,
+	            { to: "/spam/:" + { id: id }, onEnter: obj },
+	            _react2.default.createElement(
+	              'h4',
+	              null,
+	              'Title: ',
+	              title
+	            )
 	          ),
 	          _react2.default.createElement('hr', null),
 	          _react2.default.createElement('br', null)
 	        );
 	      });
-	
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'spam-results' },
@@ -379,56 +352,118 @@
 	  return EmailContainer;
 	}(_react2.default.Component);
 	
-	var List = function (_React$Component6) {
-	  _inherits(List, _React$Component6);
+	var EmailInbox = function (_React$Component6) {
+	  _inherits(EmailInbox, _React$Component6);
 	
-	  function List(props) {
-	    _classCallCheck(this, List);
+	  function EmailInbox(props) {
+	    _classCallCheck(this, EmailInbox);
 	
-	    var _this6 = _possibleConstructorReturn(this, Object.getPrototypeOf(List).call(this, props));
+	    var _this6 = _possibleConstructorReturn(this, Object.getPrototypeOf(EmailInbox).call(this, props));
 	
-	    _this6.state = { emails: EMAILS };
-	    // var listEmail = Object.keys(emails).map(function(id, index) {
-	    //   var email = emails[id];
-	    //   return (
-	    //     <div key={index}>
-	    //       <li>{email}</li>
-	    //     </div>
-	    //   )
-	    // })
+	    _this6.state = { inbox: EMAILS.spam };
 	    return _this6;
 	  }
 	
-	  _createClass(List, [{
+	  _createClass(EmailInbox, [{
 	    key: 'render',
 	    value: function render() {
+	      var inbox = this.state.inbox;
+	      var id, title, to, content, from;
+	      // var email = spam[email_id];
+	
+	      // console.log(email_id);
+	      // var results = Object.keys(spam).map(function(item) {
+	      //   var obj = spam[item];
+	      //   content = obj.content;
+	      //   id = obj.id;
+	      //   title = obj.title;
+	      //   to = obj.to;
+	      //   from = obj.from;
+	
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        console.log(this.state.emails),
+	        { className: 'inbox' },
 	        _react2.default.createElement(
 	          'li',
-	          null,
-	          this.state.emails.inbox[0].from
+	          { className: 'user-id' },
+	          'user id: ',
+	          id
 	        ),
-	        '} } }'
+	        _react2.default.createElement('hr', null),
+	        _react2.default.createElement('br', null)
 	      );
 	    }
 	  }]);
 	
-	  return List;
+	  return EmailInbox;
+	}(_react2.default.Component);
+	
+	var EmailSpam = function (_React$Component7) {
+	  _inherits(EmailSpam, _React$Component7);
+	
+	  function EmailSpam(props) {
+	    _classCallCheck(this, EmailSpam);
+	
+	    var _this7 = _possibleConstructorReturn(this, Object.getPrototypeOf(EmailSpam).call(this, props));
+	
+	    _this7.state = { spam: EMAILS.spam };
+	
+	    return _this7;
+	  }
+	
+	  _createClass(EmailSpam, [{
+	    key: 'render',
+	    value: function render(props) {
+	      //   var spam = this.state.spam;
+	      //   var id, title, to, content, from;
+	      //   // var email = spam[this.state.link_id];
+	      //   console.log(this.props.email_id);
+	
+	      //   var results = Object.keys(spam).map(function(item) {
+	      //     var obj = spam[item];
+	      //     content = obj.content;
+	      //     id = obj.id;
+	      //     title = obj.title;
+	      //     to = obj.to;
+	      //     from = obj.from;
+	
+	
+	      //     return (
+	      //       <div className="spam" >
+	      //         <li className="user-id">user id: {id}</li>
+	      //         <h4>To: {to}</h4>
+	      //         <h4>From: {from}</h4>
+	      //         <h4>Title: {title}</h4>
+	      //         <p>Content: {content}</p>
+	      //         <li className="user-id">user id: {id}</li>
+	      //         <hr></hr>
+	      //         <br/>
+	      //       </div>
+	      //     )
+	      //   })
+	      console.log(this.props.obj);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        this.props.obj
+	      );
+	    }
+	  }]);
+	
+	  return EmailSpam;
 	}(_react2.default.Component);
 	
 	var routes = _react2.default.createElement(
 	  _reactRouter.Router,
-	  { history: _reactRouter.hashHistory },
+	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: App },
 	    _react2.default.createElement(_reactRouter.Route, { path: '/inbox', component: Inbox }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/spam', component: Spam }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/list', component: List }),
 	    _react2.default.createElement(_reactRouter.Route, { path: '/sidebar', component: SideBar }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/inbox/:id', component: EmailInbox }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/spam/:id', component: EmailSpam }),
 	    _react2.default.createElement(_reactRouter.IndexRoute, { component: EmailContainer })
 	  )
 	);
