@@ -96,9 +96,9 @@ class Inbox extends React.Component {
       from = obj.from;
 
       return(
-        <div className="inbox" key={item.id}>
+        <div className="inbox" key={id}>
           <h4>From: {from}</h4>
-          <Link to={'/inbox/:id'}>
+          <Link to={"/inbox/:" + id}>
             <h4>Title: {title}</h4>
           </Link>
           <hr></hr>
@@ -131,12 +131,12 @@ class Spam extends React.Component {
       title = obj.title;
       to = obj.to;
       from = obj.from;
-
       console.log(id);
+
       return (
         <div className="spam" key={id}>
           <h4>From: {from}</h4>
-          <Link to={"/spam/:" + {id}} onEnter={obj}>
+          <Link to={"/spam/:" + id}>
             <h4>Title: {title}</h4>
           </Link>
           <hr></hr>
@@ -185,7 +185,7 @@ class EmailInbox extends React.Component {
 
     return (
       <div className="inbox" >
-          <li className="user-id">user id: {id}</li>
+          <li className="user-id">user id: {this.props.params.id}</li>
           <hr></hr>
           <br/>
         </div>
@@ -200,6 +200,7 @@ class EmailSpam extends React.Component {
 
   }
   render(props) {
+  // var id = this.props.params.id;
   //   var spam = this.state.spam;
   //   var id, title, to, content, from;
   //   // var email = spam[this.state.link_id];
@@ -227,9 +228,9 @@ class EmailSpam extends React.Component {
   //       </div>
   //     )
   //   })
-    console.log(this.props.obj)
+    console.log(this.props.params.id);
     return (
-      <div>{this.props.obj}</div>
+      <div>{this.props.params.id}</div>
     )
   }
 }
