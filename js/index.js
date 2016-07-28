@@ -85,7 +85,7 @@ class Inbox extends React.Component {
   }
   render() {
     var inbox = this.state.inbox;
-    var id, title, to, content, from;
+    var id, title, to, content, from_user;
 
     var results = Object.keys(inbox).map(function(item) {
       var obj = inbox[item];
@@ -93,12 +93,12 @@ class Inbox extends React.Component {
       id = obj.id;
       title = obj.title;
       to = obj.to;
-      from = obj.from;
+      from_user = obj.from;
 
       return(
         <div className="inbox" key={id}>
-          <h4>From: {from}</h4>
-          <Link to={"/inbox/:" + id}>
+          <h4>From: {from_user}</h4>
+          <Link to={"/inbox/" + id}>
             <h4>Title: {title}</h4>
           </Link>
           <hr></hr>
@@ -122,7 +122,7 @@ class Spam extends React.Component {
   }
   render() {
     var spam = this.state.spam;
-    var id, title, to, content, from;
+    var id, title, to, content, from_user;
 
     var results = Object.keys(spam).map(function(item) {
       var obj = spam[item];
@@ -130,13 +130,13 @@ class Spam extends React.Component {
       id = obj.id;
       title = obj.title;
       to = obj.to;
-      from = obj.from;
+      from_user = obj.from;
       console.log(id);
 
       return (
         <div className="spam" key={id}>
-          <h4>From: {from}</h4>
-          <Link to={"/spam/:" + id}>
+          <h4>From: {from_user}</h4>
+          <Link to={"/spam/" + id}>
             <h4>Title: {title}</h4>
           </Link>
           <hr></hr>
@@ -144,9 +144,10 @@ class Spam extends React.Component {
         </div>
       )
     });
-  return (
-    <div className="spam-results"><h3>Spam</h3>{results}</div>
-  )
+
+    return (
+      <div className="spam-results"><h3>Spam</h3>{results}</div>
+    )
   }
 }
 
@@ -167,70 +168,63 @@ class EmailContainer extends React.Component {
 class EmailInbox extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { inbox: EMAILS.spam }
+    this.state = { inbox: EMAILS.inbox }
   }
   render() {
-    var inbox = this.state.inbox;
-    var id, title, to, content, from;
-    // var email = spam[email_id];
+    var id = this.props.params.id;
+    var email = this.state.inbox[id];
 
-    // console.log(email_id);
-    // var results = Object.keys(spam).map(function(item) {
-    //   var obj = spam[item];
-    //   content = obj.content;
-    //   id = obj.id;
-    //   title = obj.title;
-    //   to = obj.to;
-    //   from = obj.from;
+    var content = email.content;
+    var title = email.title;
+    var to = email.to;
+    var from_inbox = email.from;
 
+    var results = (
+      <div className="spam" >
+        <h4>To: {to}</h4>
+        <h4>From: {from_inbox}</h4>
+        <h4>Title: {title}</h4>
+        <p>Content: {content}</p>
+        <li className="user-id">user id: {id}</li>
+        <hr></hr>
+        <br/>
+      </div>
+    )
     return (
-      <div className="inbox" >
-          <li className="user-id">user id: {this.props.params.id}</li>
-          <hr></hr>
-          <br/>
-        </div>
-      )
+      <div>{results}</div>
+    )
   }
 }
+
 
 class EmailSpam extends React.Component {
   constructor(props) {
     super(props);
     this.state = { spam: EMAILS.spam }
-
   }
+
   render(props) {
-  // var id = this.props.params.id;
-  //   var spam = this.state.spam;
-  //   var id, title, to, content, from;
-  //   // var email = spam[this.state.link_id];
-  //   console.log(this.props.email_id);
+    var id = this.props.params.id;
+    var email = this.state.spam[id];
 
-  //   var results = Object.keys(spam).map(function(item) {
-  //     var obj = spam[item];
-  //     content = obj.content;
-  //     id = obj.id;
-  //     title = obj.title;
-  //     to = obj.to;
-  //     from = obj.from;
+    var content = email.content;
+    var title = email.title;
+    var to = email.to;
+    var from_spam = email.from;
 
-
-  //     return (
-  //       <div className="spam" >
-  //         <li className="user-id">user id: {id}</li>
-  //         <h4>To: {to}</h4>
-  //         <h4>From: {from}</h4>
-  //         <h4>Title: {title}</h4>
-  //         <p>Content: {content}</p>
-  //         <li className="user-id">user id: {id}</li>
-  //         <hr></hr>
-  //         <br/>
-  //       </div>
-  //     )
-  //   })
-    console.log(this.props.params.id);
+    var results = (
+      <div className="spam" >
+        <h4>To: {to}</h4>
+        <h4>From: {from_spam}</h4>
+        <h4>Title: {title}</h4>
+        <p>Content: {content}</p>
+        <li className="user-id">user id: {id}</li>
+        <hr></hr>
+        <br/>
+      </div>
+    )
     return (
-      <div>{this.props.params.id}</div>
+      <div>{results}</div>
     )
   }
 }
