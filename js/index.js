@@ -159,7 +159,7 @@ class EmailContainer extends React.Component {
     return (
       <div className="email-container">
         <li>welcome user:</li>
-        <SideBar />
+        {this.props.children}
       </div>
     )
   }
@@ -232,12 +232,13 @@ class EmailSpam extends React.Component {
 var routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="/inbox" component={Inbox} />
-      <Route path="/spam" component={Spam} />
-      <Route path="/sidebar" component={SideBar} />
-      <Route path="/inbox/:id" component={EmailInbox} />
-      <Route path="/spam/:id" component={EmailSpam} />
-      <IndexRoute component={EmailContainer} />
+      <Route component={EmailContainer}>
+        <IndexRoute component={SideBar} />
+        <Route path="/inbox" component={Inbox} />
+        <Route path="/spam" component={Spam} />
+        <Route path="/inbox/:id" component={EmailInbox} />
+        <Route path="/spam/:id" component={EmailSpam} />
+      </Route>
     </Route>
   </Router>
 )

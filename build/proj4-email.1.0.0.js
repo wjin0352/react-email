@@ -345,7 +345,7 @@
 	          null,
 	          'welcome user:'
 	        ),
-	        _react2.default.createElement(SideBar, null)
+	        this.props.children
 	      );
 	    }
 	  }]);
@@ -499,12 +499,15 @@
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: App },
-	    _react2.default.createElement(_reactRouter.Route, { path: '/inbox', component: Inbox }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/spam', component: Spam }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/sidebar', component: SideBar }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/inbox/:id', component: EmailInbox }),
-	    _react2.default.createElement(_reactRouter.Route, { path: '/spam/:id', component: EmailSpam }),
-	    _react2.default.createElement(_reactRouter.IndexRoute, { component: EmailContainer })
+	    _react2.default.createElement(
+	      _reactRouter.Route,
+	      { component: EmailContainer },
+	      _react2.default.createElement(_reactRouter.IndexRoute, { component: SideBar }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/inbox', component: Inbox }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/spam', component: Spam }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/inbox/:id', component: EmailInbox }),
+	      _react2.default.createElement(_reactRouter.Route, { path: '/spam/:id', component: EmailSpam })
+	    )
 	  )
 	);
 	
